@@ -18,7 +18,11 @@ int istext(char c) {
  *       "next" is not plain text, and do nothing if neither is plain text.
  *       See also the given unit tests. */
 int ttos(char next, char str[], char dflt) {
-    return 0;
+	if (next == \t){
+		int numSpaceInsert = 8 - (strlen(str) % 8);
+		    }
+
+	return 0;
 }
 
 /* stot: Converts a character from spaces to tabs.
