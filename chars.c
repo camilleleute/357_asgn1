@@ -30,22 +30,27 @@ int ttos(char next, char str[], char dflt) {
 		}
 	}
 }
-
+int charCounter = 0;
 //helper for ttos
 int charCheck(char c, char str[]) {
 	if (c == '\t'){
-        	int numSpaces = 8 - (strlen(str) % 8);
-                for (int i = 0; i < numSpaces; i++) {
+        	int i = 0;
+		int numSpaces = 8 - (charCounter % 8);
+                for (i = 0; i < numSpaces; i++) {
                         str[i] = ' ';
                         }
+		charCounter = 0;
                 str[numSpaces] = '\0';
                 return numSpaces;
                 }
         else {
                 if (c == '\n') {
-                        str[0] = '\0';
+			charCounter = 0
+                        str[0] = '\n';
+			str[1] = '\0';
                         return 1; }                
                 else {
+			charCounter++;
                         str[0] = c;
                         str[1] = '\0';
                         return 1;
@@ -59,6 +64,70 @@ int charCheck(char c, char str[]) {
  *       the current line length), and 0 to 7 spaces followed by "next"
  *       otherwise. Use "dflt" instead if "next" is not plain text, and do
  *       nothing if neither is plain text. See also the given unit tests. */
+int spaceCntr = 0;
+int stotCharCntr = 0;
 int stot(char next, char str[], char dflt) {
-    return 0;
+	if (istext(next == 1)) {
+		return stotHelp(next, str[]);	
+	} else {
+		if (istext(dflt) == 1) {
+			return stotHelp(dflt, str[]);
+	}
+	return 0;
+}
+
+// helper
+int stotHelp (char next, char str[]) {
+	if (next == ' ') {
+		if (spaceCntr == (8-(stotCharCntr % 8))) {
+			str[0] = '\t';
+                        str[1] = '\0';
+                        spaceCntr = 0;
+                        stotCharCntr = 0;
+                        return 1;
+                } else {
+                        spaceCntr++;
+                        str[0] == '\0';
+                        return 0;
+                  }
+       } else {
+                 if (next == '\n') {
+                         spaceCntr = 0;
+                         stotCharCntr = 0;
+                         str[0] = '\n';
+                         str[1] = '\0';
+                         return 1;
+                 } else {
+                         if (next = '\t') {
+			 	int k = 0;
+				nut = 8 - ((stotCharCntr+spaceCntr)%8);
+				for (k = 0; k < (nut-1); k++){
+					str[k] = ' ';
+				}
+				str[nut] = '\t'
+				str[nut+1] = '\0'
+				spaceCntr = 0;
+				stotCharCntr = 0;
+				return nut + 1;
+			 } else {
+			 	if (spaceCntr > 1) {
+                 	        	int i = 0;
+                        		for ( i = 0; i < spaceCntr; i++) {
+             	                           str[i] = ' ';
+                	                }
+                        	        str[spaceCntr] = next;
+                	                str[spaceCntr+1] = '\0';
+                                	stotCharCntr = stotCharCntr + spaceCntr + 1;
+        	                        spaceCntr = 0;
+   	        	                return spaceCntr + 1;
+                        	} else {
+                                	str[0] = next;
+                          	        str[1] = '\0';
+                                	stotCharCntr++
+                                	return 1;
+                                }
+                        }
+                }
+	return 0;
+	}
 }
