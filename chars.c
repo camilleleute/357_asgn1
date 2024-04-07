@@ -19,15 +19,38 @@ int istext(char c) {
  *       See also the given unit tests. */
 int ttos(char next, char str[], char dflt) {
 	if (istext(next) == 1) {
-
-	}
-	else {
-		if (istext(dflt) == 1) {
+		return charCheck(next, str[]);	
+	}	
+	else {	
+            	if (istext(dflt) == 1) {
+			return charCheck (dflt, str[]);
 		}
 		else {
 			return 0
 		}
 	}
+}
+
+//helper for ttos
+int charCheck(char c, char str[]) {
+	if (c == '\t'){
+        	int numSpaces = 8 - (strlen(str) % 8);
+                for (int i = 0; i < numSpaces; i++) {
+                        str[i] = ' ';
+                        }
+                str[numSpaces] = '\0';
+                return numSpaces;
+                }
+        else {
+                if (c == '\n') {
+                        str[0] = '\0';
+                        return 1; }                
+                else {
+                        str[0] = c;
+                        str[1] = '\0';
+                        return 1;
+                }
+        }
 }
 
 /* stot: Converts a character from spaces to tabs.
