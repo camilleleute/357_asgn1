@@ -10,8 +10,9 @@ int main(void) {
 
     while (scanf("%c", &next) != EOF) {
         /* TODO: Call "stot" here, then print the result. */
-	stot = stot(next, str, '?');
-	printf(stot);
+        stot(next, str, '?');
+        printf("%s", str);
+     
     }
 
     return 0;

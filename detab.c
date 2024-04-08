@@ -10,8 +10,8 @@ int main(void) {
 
     while (scanf("%c", &next) != EOF) {
         /* TODO: Call "ttos" here, then print the result. */
-	ttos = ttos(next, str, '?');
-	printf(ttos);
+	ttos(next, str, '?');
+	printf("%s", str);
     }
 
     return 0;

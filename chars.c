@@ -112,38 +112,25 @@ int stotHelp (char next, char str[]) {
                          str[1] = '\0';
                          return 1;
                  } else {
-                         if (next == '\t') {
-			 	int k = 0;
-				int nut = 0;
-				nut = 8 - ((stotCharCntr + spaceCntr)%8);
-				for (k = 0; k < nut; k++){
-					str[k] = ' ';
-				}
-				str[nut] = '\t';
-				str[nut+1] = '\0';
-				spaceCntr = 0;
-				stotCharCntr = 0;
-				return nut+1; 
-			 } else {
-			 	if (spaceCntr > 0) {
-                 	        	int i = 0;
-                        		for ( i = 0; i < spaceCntr; i++) {
-             	                           str[i] = ' ';
-                	                }
-                        	        str[spaceCntr] = next;
-                	                str[spaceCntr+1] = '\0';
-					i = spaceCntr + 1;
-                                	stotCharCntr = stotCharCntr + spaceCntr + 1;
-        	                        spaceCntr = 0;
-   	        	                return i;
-                        	} else {
-                                	str[0] = next;
-                          	        str[1] = '\0';
-                                	stotCharCntr++;
-                                	return 1;
-                                }
+			 if (spaceCntr > 0) {
+                 	       	int i = 0;
+                       		for ( i = 0; i < spaceCntr; i++) {
+             	                       str[i] = ' ';
+               	                }
+                       	        str[spaceCntr] = next;
+               	                str[spaceCntr+1] = '\0';
+				i = spaceCntr + 1;
+                               	stotCharCntr = stotCharCntr + spaceCntr + 1;
+        	                spaceCntr = 0;
+   	       	                return i;
+                       	} else {
+                               	str[0] = next;
+                       	        str[1] = '\0';
+                               	stotCharCntr++;
+                               	return 1;
+                               }
                         }
                 }
 	return 0;
 	}
-}
+
