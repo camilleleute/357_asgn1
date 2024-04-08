@@ -3,7 +3,7 @@
  * Given code, Spring '24. */
 
 #include "chars.h"
-
+#include <stdio.h>
 /* istext: Checks whether or not a character is plain text.
  * NOTE: Do not alter this function. It returns 1 if "c" has an ASCII code in
  *       the ranges [0x08, 0x0D] or [0x20, 0x7E], and 0 otherwise. */
@@ -17,21 +17,27 @@ int istext(char c) {
  *       current line length), and "next" otherwise. Use "dflt" instead if
  *       "next" is not plain text, and do nothing if neither is plain text.
  *       See also the given unit tests. */
+int charCheck(char next, char str[]);
+
 int ttos(char next, char str[], char dflt) {
+	int numChar = 0;
 	if (istext(next) == 1) {
-		return charCheck(next, str[]);	
+		numChar = charCheck(next, str);
+		return numChar;	
 	}	
 	else {	
             	if (istext(dflt) == 1) {
-			return charCheck (dflt, str[]);
+			numChar = charCheck(dflt, str);
+			return numChar;
 		}
 		else {
-			return 0
+			return 0;
 		}
 	}
 }
+
 int charCounter = 0;
-//helper for ttos
+/*helper for ttos*/
 int charCheck(char c, char str[]) {
 	if (c == '\t'){
         	int i = 0;
@@ -45,7 +51,7 @@ int charCheck(char c, char str[]) {
                 }
         else {
                 if (c == '\n') {
-			charCounter = 0
+			charCounter = 0;
                         str[0] = '\n';
 			str[1] = '\0';
                         return 1; }                
@@ -64,21 +70,29 @@ int charCheck(char c, char str[]) {
  *       the current line length), and 0 to 7 spaces followed by "next"
  *       otherwise. Use "dflt" instead if "next" is not plain text, and do
  *       nothing if neither is plain text. See also the given unit tests. */
+int stotHelp (char next, char str[]);
 int spaceCntr = 0;
 int stotCharCntr = 0;
 int stot(char next, char str[], char dflt) {
-	if (istext(next == 1)) {
-		return stotHelp(next, str[]);	
+	int numChar = 0;
+	if (istext(next) == 1) {
+		numChar = stotHelp(next, str);
+		return numChar;
 	} else {
 		if (istext(dflt) == 1) {
-			return stotHelp(dflt, str[]);
+			numChar = stotHelp(dflt, str);
+			return numChar;
+		} else {
+		str[0] = '\0';
+		return 0;
+		}
 	}
 	return 0;
 }
 
-// helper
 int stotHelp (char next, char str[]) {
 	if (next == ' ') {
+		spaceCntr++;
 		if (spaceCntr == (8-(stotCharCntr % 8))) {
 			str[0] = '\t';
                         str[1] = '\0';
@@ -86,8 +100,7 @@ int stotHelp (char next, char str[]) {
                         stotCharCntr = 0;
                         return 1;
                 } else {
-                        spaceCntr++;
-                        str[0] == '\0';
+                        str[0] = '\0';
                         return 0;
                   }
        } else {
@@ -98,14 +111,15 @@ int stotHelp (char next, char str[]) {
                          str[1] = '\0';
                          return 1;
                  } else {
-                         if (next = '\t') {
+                         if (next == '\t') {
 			 	int k = 0;
+				int nut = 0;
 				nut = 8 - ((stotCharCntr+spaceCntr)%8);
 				for (k = 0; k < (nut-1); k++){
 					str[k] = ' ';
 				}
-				str[nut] = '\t'
-				str[nut+1] = '\0'
+				str[nut] = '\t';
+				str[nut+1] = '\0';
 				spaceCntr = 0;
 				stotCharCntr = 0;
 				return nut + 1;
@@ -123,7 +137,7 @@ int stotHelp (char next, char str[]) {
                         	} else {
                                 	str[0] = next;
                           	        str[1] = '\0';
-                                	stotCharCntr++
+                                	stotCharCntr++;
                                 	return 1;
                                 }
                         }
