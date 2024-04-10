@@ -105,13 +105,6 @@ int stotHelp (char next, char str[]) {
                         return 0;
                   }
        } else {
-                 if (next == '\n') {
-                         spaceCntr = 0;
-                         stotCharCntr = 0;
-                         str[0] = '\n';
-                         str[1] = '\0';
-                         return 1;
-                 } else {
 			 if (spaceCntr > 0) {
                  	       	int i = 0;
                        		for ( i = 0; i < spaceCntr; i++) {
@@ -120,7 +113,7 @@ int stotHelp (char next, char str[]) {
                        	        str[spaceCntr] = next;
                	                str[spaceCntr+1] = '\0';
 				i = spaceCntr + 1;
-				if (next == '\t') {
+				if ((next == '\t')|(next == '\n')) {
 					stotCharCntr = 0;
 				} else {
                                	stotCharCntr = stotCharCntr + spaceCntr + 1;}
@@ -133,7 +126,7 @@ int stotHelp (char next, char str[]) {
                                	return 1;
                                }
                         }
-                }
+                
 	return 0;
 	}
 
