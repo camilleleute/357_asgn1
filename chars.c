@@ -105,7 +105,8 @@ int stotHelp (char next, char str[]) {
                         return 0;
                   }
        } else {
-			 if (spaceCntr > 0) {
+		 
+	       if (spaceCntr > 0) {
                  	       	int i = 0;
                        		for ( i = 0; i < spaceCntr; i++) {
              	                       str[i] = ' ';
@@ -122,8 +123,9 @@ int stotHelp (char next, char str[]) {
                        	} else {
                                	str[0] = next;
                        	        str[1] = '\0';
-				if (next == '\n'){
+				if  ((next == '\t')||(next == '\n')){
 				stotCharCntr = 0;
+				spaceCntr = 0;
 				} else {
                                	stotCharCntr++;}
                                	return 1;
