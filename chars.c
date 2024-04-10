@@ -120,7 +120,10 @@ int stotHelp (char next, char str[]) {
                        	        str[spaceCntr] = next;
                	                str[spaceCntr+1] = '\0';
 				i = spaceCntr + 1;
-                               	stotCharCntr = stotCharCntr + spaceCntr + 1;
+				if (next == '\t') {
+					stotCharCntr = 0;
+				} else {
+                               	stotCharCntr = stotCharCntr + spaceCntr + 1;}
         	                spaceCntr = 0;
    	       	                return i;
                        	} else {
